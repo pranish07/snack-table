@@ -6,8 +6,14 @@ export const SnackTable = ({data,setData}) => {
   const [toggle, setToggle] = useState(false);
   const handleClickPrice = () => {
     const sortedProducts = [...data].sort((a, b) => a.price - b.price);
+    setToggle(!toggle);
     setData(sortedProducts);
   };
+  const handleClickPriceDesc = ()=>{
+    const sortedProducts = [...data].sort((a, b) =>b.price- a.price );
+    setToggle(!toggle);
+    setData(sortedProducts);
+  }
   const handleClickProductName = () => {
     const sortedProducts = [...data].sort((a, b) =>
       a.product_name.localeCompare(b.product_name)
@@ -31,7 +37,7 @@ export const SnackTable = ({data,setData}) => {
           <th onClick={handleClickID}>ID</th>
           <th onClick={handleClickProductName}>productName</th>
           <th>product Weight</th>
-          <th onClick={handleClickPrice}>Price(INR)</th>
+          <th onClick={toggle?handleClickPrice:handleClickPriceDesc}>Price(INR)</th>
           <th onClick={handleClickCalories}>Calories</th>
           <th>Ingredients</th>
         </tr>
